@@ -1,1 +1,5 @@
-# otus_java_2019_12
+# курс "Разработчик Java" в OTUS
+Студент:
+Vasily Zhigalov
+
+vasiliyzhigalov@gmail.com

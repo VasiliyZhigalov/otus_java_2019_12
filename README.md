@@ -1,5 +1,5 @@
 ### курс "Разработчик Java" в OTUS
 Студент:
-Vasily Zhigalov
+Vasiliy Zhigalov
 
 vasiliyzhigalov@gmail.com

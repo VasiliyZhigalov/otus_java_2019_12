@@ -14,4 +14,3 @@ public class HelloOtus {
         System.out.println(graph);
     }
 }
-// java -jar .\hw01-maven\target\hw01-maven-jar-with-dependencies.jar

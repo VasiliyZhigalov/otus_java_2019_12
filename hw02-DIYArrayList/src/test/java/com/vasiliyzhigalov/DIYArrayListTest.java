@@ -21,6 +21,7 @@ public class DIYArrayListTest {
             diyArrayList.add(strArr);
         }
     }
+
     @Test
     public void collectionsAddAllTest() {
         Collections.addAll(arrayList, "new", "new1", "new2");
@@ -46,11 +47,16 @@ public class DIYArrayListTest {
         diy.add(4);
         diy.add(3);
         diy.add(0);
-
         ArrayList<Integer> arr = new ArrayList<>(diy);
-
         Collections.sort(diy);
         Collections.sort(arr);
         Assert.assertEquals(arr, diy);
+    }
+
+    @Test
+    public void containsNull() {
+        List<String> list = new DIYArrayList<>();
+        list.add(null);
+        Assert.assertTrue(list.contains(null));
     }
 }

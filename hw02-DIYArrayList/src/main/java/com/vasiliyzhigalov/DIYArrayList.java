@@ -1,8 +1,10 @@
 package com.vasiliyzhigalov;
+
 import java.util.*;
 
 /**
  * Собственная реализация ArrayList на основе массива
+ *
  * @param <E>
  */
 
@@ -23,9 +25,15 @@ public class DIYArrayList<E> implements List<E> {
 
     @Override
     public boolean contains(Object o) {
-        for (int index = 0; index < pointer; index++)
-            if (array[index].equals(0))
-                return true;
+        if (o == null) {
+            for (int index = 0; index < pointer; index++)
+                if (array[index] == null)
+                    return true;
+        } else {
+            for (int index = 0; index < pointer; index++)
+                if (array[index].equals(0))
+                    return true;
+        }
         return false;
     }
 
@@ -209,7 +217,7 @@ public class DIYArrayList<E> implements List<E> {
 
             @Override
             public void remove() {
-
+                throw new UnsupportedOperationException();
             }
 
             @Override
@@ -219,6 +227,7 @@ public class DIYArrayList<E> implements List<E> {
 
             @Override
             public void add(E e) {
+                throw new UnsupportedOperationException();
             }
         };
     }
@@ -244,7 +253,7 @@ public class DIYArrayList<E> implements List<E> {
         if (index >= 0 && index < length)
             return index;
         else {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException(index);
         }
     }
 

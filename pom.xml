@@ -16,6 +16,7 @@
     <modules>
         <module>hw01-maven</module>
         <module>hw02-DIYArrayList</module>
+        <module>hw03-gc</module>
     </modules>
     <dependencies>
         <dependency>

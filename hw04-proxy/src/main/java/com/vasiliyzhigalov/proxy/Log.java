@@ -6,7 +6,4 @@ import java.lang.reflect.Proxy;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@Inherited
-public @interface Log {
-
-}
+public @interface Log {}

@@ -2,14 +2,13 @@ package com.vasiliyzhigalov.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.lang.reflect.Parameter;
+import java.util.*;
 
 public class LoggingInvocationHandler implements InvocationHandler {
 
     private final TestLoggingInterface myClass;
-    private List<String> annotatedMethodsName;
+    private Set<Method> annotatedMethods;
 
     public LoggingInvocationHandler(TestLoggingInterface myClass) {
         this.myClass = myClass;
@@ -19,18 +18,22 @@ public class LoggingInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         String name = method.getName();
-        if (annotatedMethodsName.contains(name)) {
-            System.out.println("executed method: " + name + " | param: " + Arrays.toString(args));
+        for (Method annotatedMethod : annotatedMethods) {
+            if (annotatedMethod.getName().equals(name) &&
+                    Arrays.equals(annotatedMethod.getParameterTypes(), method.getParameterTypes())) {
+                System.out.println("executed method: " + name + " | param: " + Arrays.toString(args));
+            }
         }
         return method.invoke(myClass, args);
     }
 
     private void getAnnotatedMethodsName() {
-        Method[] methods = TestLogging.class.getMethods();
-        annotatedMethodsName = new ArrayList<>();
+        Class myClazz = TestLogging.class;
+        Set<Method> methods = new HashSet<>(Arrays.asList(myClazz.getMethods()));
+        annotatedMethods = new HashSet<>();
         for (Method method : methods) {
             if (method.isAnnotationPresent(Log.class)) {
-                annotatedMethodsName.add(method.getName());
+                annotatedMethods.add(method);
             }
         }
     }

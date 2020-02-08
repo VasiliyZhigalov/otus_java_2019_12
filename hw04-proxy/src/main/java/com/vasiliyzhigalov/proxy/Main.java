@@ -5,6 +5,7 @@ public class Main {
         TestLoggingInterface myClass = Logger.logger();
         myClass.calculation(12, 11);
         myClass.first(12.1);
+        myClass.first(1);
         myClass.second(1.23);
         myClass.third();
     }

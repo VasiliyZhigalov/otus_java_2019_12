@@ -1,4 +1,4 @@
-package com.vasiliyzhigalov.testfamework.annotations;
+package com.vasiliyzhigalov.testframework.annotations;
 
 import java.lang.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.vasiliyzhigalov.testfamework;
+package com.vasiliyzhigalov.testframework;
 
 public class Assert {
     public static void assertTrue(Object expected, Object actual)  {

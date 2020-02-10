@@ -1,8 +1,8 @@
-package com.vasiliyzhigalov.testfamework.annotations;
+package com.vasiliyzhigalov.testframework;
 
 public class TestResult {
     private String testName;
-    private  boolean result;
+    private boolean result;
     private String message;
 
     public TestResult(String testName, boolean result, String massege) {
@@ -10,6 +10,16 @@ public class TestResult {
         this.message = massege;
         this.testName = testName;
     }
+
+    public TestResult(String testName) {
+        this.testName = testName;
+    }
+
+    public void setResultAndMessage(boolean result, String message) {
+        this.result = result;
+        this.message = message;
+    }
+
 
     public boolean getResult() {
         return result;

@@ -1,8 +1,9 @@
-package com.vasiliyzhigalov.testfamework;
+package com.vasiliyzhigalov.testframework;
 
-import com.vasiliyzhigalov.testfamework.annotations.After;
-import com.vasiliyzhigalov.testfamework.annotations.Before;
+import com.vasiliyzhigalov.testframework.annotations.After;
+import com.vasiliyzhigalov.testframework.annotations.Before;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,14 +15,22 @@ public class TestCase {
     private Set<Method> beforeMethods = new HashSet<>();
     private Set<Method> afterMethods = new HashSet<>();
     private Set<Method> testMethods = new HashSet<>();
-    private Object testObj;
-    public TestCase(Object testObj) {
-        this.testObj = testObj;
-        findAnnotationMethod(this.testObj.getClass());
+    private Class testClass;
+
+    public TestCase(Class testClass) {
+        this.testClass = testClass;
+        findAnnotationMethod(testClass);
     }
+
     public void addAllTests() {
         for (Method testMethod : testMethods) {
-            tests.add(new Test(this.testObj,testMethod, beforeMethods, afterMethods));
+            Object testObj = null;
+            try {
+                testObj = testClass.getConstructor().newInstance();
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            tests.add(new Test(testObj, testMethod, beforeMethods, afterMethods));
         }
     }
 
@@ -32,7 +41,7 @@ public class TestCase {
                 beforeMethods.add(method);
             } else if (method.isAnnotationPresent(After.class)) {
                 afterMethods.add(method);
-            } else if (method.isAnnotationPresent(com.vasiliyzhigalov.testfamework.annotations.Test.class)) {
+            } else if (method.isAnnotationPresent(com.vasiliyzhigalov.testframework.annotations.Test.class)) {
                 testMethods.add(method);
             }
         }
@@ -40,5 +49,9 @@ public class TestCase {
 
     public List<Test> getTests() {
         return tests;
+    }
+
+    public int size() {
+        return tests.size();
     }
 }

@@ -1,4 +1,4 @@
-package com.vasiliyzhigalov.testfamework;
+package com.vasiliyzhigalov.testframework;
 
 public class AssertionFailedError extends AssertionError {
     String message;

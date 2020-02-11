@@ -18,6 +18,7 @@
         <module>hw02-DIYArrayList</module>
         <module>hw03-gc</module>
         <module>hw04-proxy</module>
+        <module>hw05-testFramework</module>
     </modules>
     <dependencies>
         <dependency>

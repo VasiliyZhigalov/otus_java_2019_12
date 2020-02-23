@@ -1,9 +1,9 @@
 package com.vasiliyzhigalov.atm.exceptions;
 
-public class СellOverflowException extends Exception {
+public class ATMСellOverflowException extends ATMException {
     String message;
 
-    public СellOverflowException(String message) {
+    public ATMСellOverflowException(String message) {
         super(message);
         this.message = message;
     }

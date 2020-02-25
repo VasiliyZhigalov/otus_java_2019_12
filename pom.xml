@@ -20,6 +20,7 @@
         <module>hw04-proxy</module>
         <module>hw05-testFramework</module>
         <module>hw06-ATM</module>
+        <module>hw07-DepartmentATM</module>
     </modules>
     <dependencies>
         <dependency>

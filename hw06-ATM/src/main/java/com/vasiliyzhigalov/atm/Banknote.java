@@ -1,42 +1,19 @@
 package com.vasiliyzhigalov.atm;
 
-import java.util.Comparator;
-import java.util.Objects;
+public enum Banknote {
+    ten(10),
+    fifty(50),
+    hundred(100),
+    fiveHundred(500),
+    thousand(1000);
 
-public class Banknote {
-    private String name;
-    private Integer value;
+    private int value;
 
-    public Banknote(String name, int value) {
-        this.name = name;
+    Banknote(int value) {
         this.value = value;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getValue() {
+    public Integer getValue() {
         return value;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Banknote banknote = (Banknote) o;
-        return value == banknote.value &&
-                Objects.equals(name, banknote.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, value);
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

@@ -19,6 +19,7 @@
         <module>hw03-gc</module>
         <module>hw04-proxy</module>
         <module>hw05-testFramework</module>
+        <module>hw06-ATM</module>
     </modules>
     <dependencies>
         <dependency>

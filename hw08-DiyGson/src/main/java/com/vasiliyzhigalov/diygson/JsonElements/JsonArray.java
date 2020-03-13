@@ -1,7 +1,11 @@
 package com.vasiliyzhigalov.diygson.JsonElements;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JsonArray extends JsonElement {
     List<JsonElement> jsonElements = new ArrayList<>();
@@ -9,13 +13,13 @@ public class JsonArray extends JsonElement {
     public JsonArray(Object object) {
         List<Object> objectList;
         if (object.getClass().isArray()) {
-            Object[] objects = (Object[]) object;
-            for (Object curObj : objects) {
-                JsonElement jse = create(curObj);
+            int length = Array.getLength(object);
+            for (int i = 0; i < length; i++) {
+                JsonElement jse = create(Array.get(object, i));
                 add(jse);
             }
         } else {
-            objectList = (ArrayList) object;
+            objectList = new ArrayList<>((Collection<?>) object);
             for (Object curObj : objectList) {
                 JsonElement jse = create(curObj);
                 add(jse);
@@ -25,7 +29,7 @@ public class JsonArray extends JsonElement {
 
     public void add(Object object) {
         if (object == null) {
-            throw new NullPointerException("Null object");
+            throw new NullPointerException("object must be not null");
         }
         this.jsonElements.add((JsonElement) object);
     }

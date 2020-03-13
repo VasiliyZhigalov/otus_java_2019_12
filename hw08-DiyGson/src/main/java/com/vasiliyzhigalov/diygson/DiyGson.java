@@ -7,7 +7,8 @@ public class DiyGson {
     public DiyGson() {
     }
     public String toJson(Object object){
-        JsonElement jsonElement= new JsonObject(object);
+        JsonElement jsonElement= new JsonElement();
+        jsonElement = jsonElement.create(object);
         return jsonElement.toJson();
     }
 }

@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class DemoPOJO {
-        private String strVar;
+    private String strVar;
     private Integer integerVar;
     private Character characterVar;
-     private List<String> strList;
+    private List<String> strList;
     private String[] strArray;
     private Integer[] IntArray;
     private DemoPOJO2 testPOJO2;
@@ -16,7 +16,7 @@ public class DemoPOJO {
         this.strVar = strVar;
         this.integerVar = null;
         this.characterVar = characterVar;
-         this.strList = strList;
+        this.strList = strList;
         this.strArray = strArray;
         this.IntArray = new Integer[]{1, 2, 3};
         this.testPOJO2 = new DemoPOJO2();

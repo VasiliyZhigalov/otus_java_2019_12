@@ -2,13 +2,14 @@ package com.vasiliyzhigalov.diygson.JsonElements;
 
 import java.util.Collection;
 
-public abstract class JsonElement {
+public class JsonElement {
+    public JsonElement() {
+    }
 
     public JsonElement create(Object obj) {
         if (obj == null) {
-            throw new NullPointerException(obj.getClass().getName());
-        }
-        if (isJsonPrimitive(obj)) {
+            return new JsonNull();
+        } else if (isJsonPrimitive(obj)) {
             return new JsonPrimitive(obj);
         } else if (isJsonArray(obj)) {
             return new JsonArray(obj);
@@ -29,5 +30,9 @@ public abstract class JsonElement {
         return clazz.isPrimitive() || Number.class.isAssignableFrom(clazz) || Character.class.isAssignableFrom(clazz) || String.class.isAssignableFrom(clazz);
     }
 
-    public abstract String toJson();
+    public String toJson() {
+        throw new UnsupportedOperationException();
+    }
+
+    ;
 }

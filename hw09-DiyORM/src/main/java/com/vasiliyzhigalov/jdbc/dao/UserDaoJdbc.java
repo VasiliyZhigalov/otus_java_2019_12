@@ -1,11 +1,12 @@
 package com.vasiliyzhigalov.jdbc.dao;
 
+import com.vasiliyzhigalov.core.dao.UserDao;
 import com.vasiliyzhigalov.core.dao.DaoException;
-import com.vasiliyzhigalov.core.dao.EntityDAO;
+import com.vasiliyzhigalov.core.model.User;
 import com.vasiliyzhigalov.core.sessionmanager.SessionManager;
-import com.vasiliyzhigalov.core.sqlmapper.SqlMapper;
 import com.vasiliyzhigalov.jdbc.DbExecutor;
 import com.vasiliyzhigalov.jdbc.sessionmanager.SessionManagerJdbc;
+import com.vasiliyzhigalov.jdbc.mapper.SqlMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,15 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DAO implements EntityDAO<Object> {
-    private static Logger logger = LoggerFactory.getLogger(DAO.class);
+public class UserDaoJdbc implements UserDao {
+    private static Logger logger = LoggerFactory.getLogger(UserDaoJdbc.class);
     private SqlMapper sqlMapper;
-    private DbExecutor executor = new DbExecutor();
+    private DbExecutor executor;
     private final SessionManagerJdbc sessionManager;
 
-    public DAO(SessionManagerJdbc sessionManager, SqlMapper sqlMapper) {
+    public UserDaoJdbc(SessionManagerJdbc sessionManager, SqlMapper sqlMapper, DbExecutor executor) {
         this.sessionManager = sessionManager;
         this.sqlMapper = sqlMapper;
+        this.executor = executor;
     }
 
     public SessionManager getSessionManager() {
@@ -37,12 +39,11 @@ public class DAO implements EntityDAO<Object> {
     }
 
     @Override
-    public void create(Object object) {
+    public void create(User user) {
         try {
-            sqlMapper.setValues(object);
             String sql = sqlMapper.getSqlQueryInsert();
             logger.info(sql);
-            executor.insertRecord(getConnection(), sql, sqlMapper.getValuesToString());
+            executor.insertRecord(getConnection(), sql, sqlMapper.getValues(user));
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             throw new DaoException(e);
@@ -50,11 +51,10 @@ public class DAO implements EntityDAO<Object> {
     }
 
     @Override
-    public void update(Object object) {
+    public void update(User user) {
         try {
-            sqlMapper.setValues(object);
-            List<String> values = new ArrayList<>(sqlMapper.getValuesToString());
-            values.add(sqlMapper.getIdElementValue().toString());
+            List<Object> values = new ArrayList<>(sqlMapper.getValues(user));
+            values.add(sqlMapper.getIdElementValue());
             String sql = sqlMapper.getSqlQueryUpdate();
             logger.info(sql);
             executor.updateRecord(getConnection(), sql, values);
@@ -65,7 +65,7 @@ public class DAO implements EntityDAO<Object> {
     }
 
     @Override
-    public Optional<Object> load(long id, Class clazz) {
+    public Optional<User> load(long id) {
         String sql = sqlMapper.getSqlQuerySelect();
         logger.info(sql);
         try {

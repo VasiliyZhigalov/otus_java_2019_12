@@ -1,5 +1,6 @@
-package com.vasiliyzhigalov.core.sqlmapper;
+package com.vasiliyzhigalov.jdbc.mapper;
 
+import java.util.List;
 import java.util.Set;
 
 public class SqlQuery {
@@ -14,7 +15,7 @@ public class SqlQuery {
         return insert;
     }
 
-    void setInsert(String tableName, Set<String> columns) {
+    void setInsert(String tableName, List<String> columns) {
         StringBuilder sql = new StringBuilder();
         StringBuilder sql2 = new StringBuilder();
         sql.append("INSERT INTO ")
@@ -39,7 +40,7 @@ public class SqlQuery {
         return update;
     }
 
-    void setUpdate(String tableName, String idName, Set<String> columns) {
+    void setUpdate(String tableName, String idName, List<String> columns) {
         StringBuilder sql = new StringBuilder();
         sql.append("UPDATE ")
                 .append(tableName)
@@ -60,7 +61,7 @@ public class SqlQuery {
         return select;
     }
 
-    void setSelect(String tableName, String idName, Set<String> columns) {
+    void setSelect(String tableName, String idName, List<String> columns) {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ");
         int i = 0;

@@ -2,7 +2,6 @@ package com.vasiliyzhigalov.jdbc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.sql.*;
 import java.util.List;
 import java.util.Optional;
@@ -15,11 +14,11 @@ import java.util.function.Function;
 public class DbExecutor<T> {
     private static Logger logger = LoggerFactory.getLogger(DbExecutor.class);
 
-    public long insertRecord(Connection connection, String sql, List<String> params) throws SQLException {
+    public long insertRecord(Connection connection, String sql, List<Object> params) throws SQLException {
         Savepoint savePoint = connection.setSavepoint("savePointName");
         try (PreparedStatement pst = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             for (int idx = 0; idx < params.size(); idx++) {
-                pst.setString(idx + 1, params.get(idx));
+                pst.setObject(idx + 1, params.get(idx));
             }
             pst.executeUpdate();
             try (ResultSet rs = pst.getGeneratedKeys()) {
@@ -32,11 +31,11 @@ public class DbExecutor<T> {
             throw ex;
         }
     }
-    public void updateRecord(Connection connection, String sql, List<String> params) throws SQLException {
+    public void updateRecord(Connection connection, String sql, List<Object> params) throws SQLException {
         Savepoint savePoint = connection.setSavepoint("savePointName");
         try (PreparedStatement pst = connection.prepareStatement(sql)) {
             for (int idx = 0; idx < params.size(); idx++) {
-                pst.setString(idx + 1, params.get(idx));
+                pst.setObject(idx + 1, params.get(idx));
             }
             pst.executeUpdate();
         } catch (SQLException ex) {

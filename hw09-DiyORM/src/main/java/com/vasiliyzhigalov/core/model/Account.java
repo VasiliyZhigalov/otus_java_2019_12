@@ -1,13 +1,12 @@
 package com.vasiliyzhigalov.core.model;
-import com.vasiliyzhigalov.core.sqlmapper.id;
 
 import java.util.Objects;
 
-public class Account extends Entity {
-    @id
+public class Account {
+    @Id
     private long no;
     private String type;
-    private Integer rest;
+    private int rest;
 
     public Account() {
     }

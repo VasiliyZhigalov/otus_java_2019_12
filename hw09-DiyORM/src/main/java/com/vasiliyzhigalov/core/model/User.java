@@ -1,10 +1,9 @@
 package com.vasiliyzhigalov.core.model;
 
 import java.util.Objects;
-import com.vasiliyzhigalov.core.sqlmapper.id;
 
-public class User extends Entity {
-    @id
+public class User {
+    @Id
     private  long id;
     private  String name;
     private  int age;

@@ -21,6 +21,8 @@
         <module>hw05-testFramework</module>
         <module>hw06-ATM</module>
         <module>hw08-DiyGson</module>
+        <module>hw09-DiyORM</module>
+        <module>hw10-hibernate</module>
     </modules>
     <dependencies>
         <dependency>

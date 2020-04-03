@@ -1,0 +1,34 @@
+<configuration scan="true" scanPeriod="10 seconds">
+    <jmxConfigurator />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APP_LOG" class="ch.qos.logback.core.FileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>%date %level [%thread] [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="log4j.logger.org.hibernate.sql" level="debug">
+        <appender-ref ref="APP_LOG" />
+    </logger>
+
+    <logger name="log4j.logger.org.hibernate.type.descriptor.sql" level="debug">
+        <appender-ref ref="APP_LOG" />
+    </logger>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

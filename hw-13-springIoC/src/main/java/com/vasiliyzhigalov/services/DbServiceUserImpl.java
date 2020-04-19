@@ -15,7 +15,6 @@ public class DbServiceUserImpl implements DbServiceUser {
 
     private final UserDao userDao;
 
-    @Autowired
     public DbServiceUserImpl(UserDao userDao) {
         this.userDao = userDao;
     }

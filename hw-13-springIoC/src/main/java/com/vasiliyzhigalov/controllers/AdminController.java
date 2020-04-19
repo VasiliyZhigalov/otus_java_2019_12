@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 public class AdminController {
-    DbServiceUser dbServiceUser;
+    private  final DbServiceUser dbServiceUser;
 
     public AdminController(DbServiceUser dbServiceUser) {
         this.dbServiceUser = dbServiceUser;

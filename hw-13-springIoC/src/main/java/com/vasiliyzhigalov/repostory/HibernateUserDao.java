@@ -17,7 +17,6 @@ public class HibernateUserDao implements UserDao {
 
     private final SessionManagerHibernate sessionManager;
 
-    @Autowired
     public HibernateUserDao(SessionManagerHibernate sessionManager) {
         this.sessionManager = sessionManager;
     }

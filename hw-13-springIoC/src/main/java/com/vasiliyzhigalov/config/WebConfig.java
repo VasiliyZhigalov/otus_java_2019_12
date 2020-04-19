@@ -1,8 +1,6 @@
 package com.vasiliyzhigalov.config;
 
-import com.vasiliyzhigalov.config.HibernateUtils;
-import com.vasiliyzhigalov.domain.User;
-import org.hibernate.SessionFactory;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,8 +17,9 @@ import org.thymeleaf.templatemode.TemplateMode;
 @ComponentScan("com.vasiliyzhigalov")
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
-    private static final String HIBERNATE_CFG_XML_FILE_RESOURCE = "hibernate.cfg.xml";
     private final ApplicationContext applicationContext;
+    private static final String HIBERNATE_CFG_XML_FILE_RESOURCE = "hibernate.cfg.xml";
+
 
     public WebConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
@@ -54,14 +53,8 @@ public class WebConfig implements WebMvcConfigurer {
         return viewResolver;
     }
 
-    @Bean
-    public SessionFactory sessionFactory() {
-        return HibernateUtils.buildSessionFactory(HIBERNATE_CFG_XML_FILE_RESOURCE, User.class);
-    }
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**").addResourceLocations("/WEB-INF/views/");
     }
-
 }

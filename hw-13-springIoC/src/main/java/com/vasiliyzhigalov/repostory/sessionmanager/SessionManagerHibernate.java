@@ -4,15 +4,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Component
 public class SessionManagerHibernate implements SessionManager {
 
     private DatabaseSessionHibernate databaseSession;
     private final SessionFactory sessionFactory;
 
-    @Autowired
     public SessionManagerHibernate(SessionFactory sessionFactory) {
         if (sessionFactory == null) {
             throw new SessionManagerException("SessionFactory is null");

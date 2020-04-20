@@ -1,4 +1,4 @@
-package com.vasiliyzhigalov.core.sessionmanager;
+package com.vasiliyzhigalov.repostory.sessionmanager;
 
 public interface SessionManager extends AutoCloseable {
   void beginSession();

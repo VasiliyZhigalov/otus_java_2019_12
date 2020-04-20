@@ -1,4 +1,4 @@
-package com.vasiliyzhigalov.core.dao;
+package com.vasiliyzhigalov.repostory;
 
 public class DaoException extends RuntimeException {
   public DaoException(Exception ex) {

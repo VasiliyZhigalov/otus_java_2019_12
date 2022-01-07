@@ -18,7 +18,7 @@
         <junit-jupiter-api.version>5.5.1</junit-jupiter-api.version>
         <mockito-core.version>2.28.2</mockito-core.version>
         <assertj-core.version>3.13.2</assertj-core.version>
-        <h2.version>1.4.197</h2.version>
+        <h2.version>2.0.206</h2.version>
         <hibernate-core.version>5.4.4.Final</hibernate-core.version>
     </properties>
 
